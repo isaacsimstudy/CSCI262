@@ -29,7 +29,7 @@ def reduceHash(rainbowPassword):
     return passwords[reducedPassword].strip('\n')
 
 count = 0
-with open('password.txt', 'r') as file:
+with open('Passwords.txt', 'r') as file:
     passwords = file.readlines()
     count = len(passwords)
 
