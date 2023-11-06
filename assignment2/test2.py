@@ -18,7 +18,7 @@ def count_distributions(K, M, H):
     return count
 
 # Example usage:
-K = 2  # Number of bits
-M = 4  # Number of subpuzzles
-H = 9  # Total number of guesses
+K = 8  # Number of bits
+M = 1  # Number of subpuzzles
+H = 256  # Total number of guesses
 print(count_distributions(K, M, H))
