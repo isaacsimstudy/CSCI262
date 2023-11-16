@@ -1,5 +1,5 @@
 Logins:D:0:100:3:
-Time online:C:0:1440:2:
-Emails Sent:D:9:199:1:
+Time Online:C:0:1440:2:
+Emails Sent:D:9:100:1:
 Emails Opened:D:0:100:1:
-Emails deleted:D:0:100:1:
+Emails Deleted:D:0:100:1:

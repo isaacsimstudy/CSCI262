@@ -2,4 +2,4 @@ Logins:4:1.5:
 Time Online:150.5:25.00:
 Emails Sent:19:3:
 Emails Opened:12:4.5:
-Emails deleted:7:2.25:
+Emails Deleted:7:2.25:
