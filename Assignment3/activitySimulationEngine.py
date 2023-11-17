@@ -1,16 +1,17 @@
 import random
 def generateEvents(eventName, eventType, eventMin, eventMax, statMean, statSD, days):
-    event = [[0 for i in range(days)] for j in range(len(eventName))]
+    event = [[eventName[j]] + [0 for i in range(days)] for j in range(len(eventName))]
     contZScore = generateZScore(3000, days)
     disZScore = generateZScore(1000, days)
     for i in range(len(eventName)):
-        for j in range(days):
+        for j in range(2, days):
             if eventType[i] == "C":
                 #Function to generate continuous data
-                event[i][j] = generateBaselineData(contZScore[j], statMean[i], statSD[i], eventMin[i], eventMax[i])
+                event[i][j] = round(generateBaselineData(contZScore[j], statMean[i], statSD[i], eventMin[i], eventMax[i]),2)
             else:
                 #Function to generate discrete data
-                event[i][j] = generateBaselineData(disZScore[j], statMean[i], statSD[i], eventMin[i], eventMax[i])
+                event[i][j] = int(generateBaselineData(disZScore[j], statMean[i], statSD[i], eventMin[i], eventMax[i]))
+    return event
 
 def generateBaselineData(zScore, statMean, statSD, eventMin, eventMax):
     while True:
