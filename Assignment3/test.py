@@ -1,9 +1,7 @@
-import random
-days = 30
+days = 10
 
-eventName = ["A", "B", "C", "D", "E"]
-event = [[0 for i in range(days)] for j in range(len(eventName))]
-for i in range(len(eventName)):
-    for j in range(days):
-        event[i][j] = random.randint(0, 100)
-print(event)
+day = [0] * days
+
+for i in range(1, days + 1):
+    print(i)
+    day[i] = i
