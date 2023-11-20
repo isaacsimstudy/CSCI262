@@ -36,11 +36,15 @@ def generateZScore(CD, days):
         zScore.append((day[i] - mean) / sd)
     return zScore
 
-def logEvents(events, days):
-    print("\n")
-    print("Writing to file")
-    with open("activities.txt", 'w') as file:
-        #List 1 is the header where index 0 is "Event Name" and the rest are the days, for subsequent lists, the first element is the event name, the rest are the values
+def logEvents(events, days, hasTakenInput):
+    print("\nWriting to file")
+    if hasTakenInput == 0:
+        fileName = "thresholdData.txt"
+    else:
+        fileName = f"liveData{hasTakenInput}.txt"
+    with open(fileName, 'w') as file:
+        #List 1 is the header where index 0 is "Event Name" and the rest are the days, for subsequent lists,
+        # the first element is the event name, the rest are the values
         for i in range(days):
             file.write(f"Event Name, Day {i + 1}\n")
             file.write(f"{events[0][0]}, {events[0][i + 1]}\n")
@@ -49,4 +53,3 @@ def logEvents(events, days):
             file.write(f"{events[3][0]}, {events[3][i + 1]}\n")
             file.write(f"{events[4][0]}, {events[4][i + 1]}\n\n\n")
     print("Done writing to file")
-    print("\n")

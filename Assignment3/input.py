@@ -1,26 +1,23 @@
 import os
 import sys
-def takeInput():
-    if len(sys.argv) == 4:
+
+def takeInput(hasTakenInput):
+    if len(sys.argv) == 4 and hasTakenInput == 0:
         eventFileName = sys.argv[1]
         statFileName = sys.argv[2]
         days = sys.argv[3]
+        findFile(eventFileName, statFileName)
     #Take input for event file, stat file and number of days, if event file or stat file does not exist, ask again
-    event = True
-    stat = True
-    while event:
-        if os.path.exists(eventFileName):
-            event = False
-        else:
-            print("Error: Event file does not exist")
-            eventFileName = input("Re-Enter event file name: ")
-
-    while stat:
-        if os.path.exists(statFileName):
-            stat = False
-        else:
-            print("Error: Stats file does not exist")
-            statFileName = input("Re-Enter stats file name: ")
+    if hasTakenInput >= 1:
+        statFileName = input("Enter stat file name: ")
+        days = input("Enter number of days: ")
+        while True:
+            if os.path.exists(statFileName) and days.isdigit():
+                break
+            else:
+                print("Error: Stat file does not exist")
+                statFileName = input("Re-Enter stat file name: ")
+        return statFileName, int(days), hasTakenInput
 
     while True:
         #Check if days is not a number or 0
@@ -32,29 +29,37 @@ def takeInput():
             else:
                 break
         except ValueError:
-            print("Error: Days is not a number")
+            print("Error: Days must be a number")
             days = input("Re-Enter number of days: ")
+    hasTakenInput += 1
+    return eventFileName, statFileName, days, hasTakenInput
 
-    return eventFileName, statFileName, days
+def findFile(eventFileName, statFileName):
+    event = True
+    stat = True
+    #Check if event file exists
+    while event:
+        if os.path.exists(eventFileName):
+            event = False
+        else:
+            print("Error: Event file does not exist")
+            eventFileName = input("Re-Enter event file name: ")
+    #Check if stat file exists
+    while stat:
+        if os.path.exists(statFileName):
+            stat = False
+        else:
+            print("Error: Stat file does not exist")
+            statFileName = input("Re-Enter stat file name: ")
 
-def readFiles(event_file, stats_file):
+def readEventFile(event_file):
     eventNames = []
     eventTypes = []
     eventMinimum = []
     eventMaximum = []
     eventWeights = []
-    statNames = []
-    statMeans = []
-    statSDs = []
-    #Read event file and stats file
     with open(event_file, "r") as event_file:
         allevents = event_file.readlines()
-
-    with open(stats_file, "r") as stats_file:
-        allstats = stats_file.readlines()
-
-
-    checkNumEvents(allevents, allstats)
 
     for i in range(len(allevents)):
         eventNames.append(allevents[i].split(':')[0])
@@ -77,7 +82,19 @@ def readFiles(event_file, stats_file):
         if eventWeights == "":
             print("Error: Event weight is empty")
             eventWeights = input(f"Enter event weight for {eventNames[i]} row: ")
-        print(f"This is the {i + 1} row of event file: {eventNames[i]}: {eventTypes[i]} : {eventMinimum[i]} : {eventMaximum[i]} : {eventWeights[i]} ")
+        print(f"{i + 1} row of event file: {eventNames[i]}: {eventTypes[i]} : {eventMinimum[i]} : {eventMaximum[i]} : {eventWeights[i]} ")
+
+    return eventNames, eventTypes, eventMinimum, eventMaximum, eventWeights
+
+def readStatsFiles(stats_file):
+
+    statNames = []
+    statMeans = []
+    statSDs = []
+    #Read stats file
+
+    with open(stats_file, "r") as stats_file:
+        allstats = stats_file.readlines()
 
     print("\n")
     for j in range(len(allstats)):
@@ -93,26 +110,22 @@ def readFiles(event_file, stats_file):
         if statSDs == "":
             print("Error: Stat SD is empty")
             statSDs = input(f"Enter stat SD for {statNames[j]} row: ")
-        print(f"This is the {j + 1} row of stats file: {statNames[j]}: {statMeans[j]} : {statSDs[j]} ")
+        print(f"{j + 1} row of stats file: {statNames[j]}: {statMeans[j]} : {statSDs[j]} ")
 
-    checkEventNames(allevents, allstats)
-
-    return eventNames, eventTypes, eventMinimum, eventMaximum, eventWeights, statNames, statMeans, statSDs
+    return statNames, statMeans, statSDs
 
 def checkNumEvents(events, stats):
     #Check if number of events in event file and stats file are same
-    print("Checking if number of events in event file and stats file are same")
     if len(events) != len(stats):
         print("Error: Number of events in event file and stats file are not same")
         exit()
 
 def checkEventNames(events, stats):
     #Check if event names in event file and stats file are same
-    print("Checking if event names in event file and stats file are same")
     for i in range(len(events)):
         eventName = events[i].split(':')[0].lower()
         statName = stats[i].split(':')[0].lower()
         if eventName != statName:
             print("Error: Event names in event file and stats file are not same")
             exit()
-    print("Ch")
+    print("Checking Done")
