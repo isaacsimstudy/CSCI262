@@ -4,11 +4,10 @@ def generateEvents(eventName, eventType, eventMin, eventMax, statMean, statSD, d
     contZScore = generateZScore(3000, days)
     disZScore = generateZScore(1000, days)
     for i in range(len(eventName)):
-        print(len(event[i]))
         for j in range(1 ,days + 1):
             if eventType[i] == "C":
                 #Function to generate continuous data
-                event[i][j] = round(generateBaselineData(contZScore[j - 1], statMean[i], statSD[i], eventMin[i], eventMax[i]),2)
+                event[i][j] = round(generateBaselineData(contZScore[j - 1], statMean[i], statSD[i], eventMin[i], eventMax[i]), 2)
             else:
                 #Function to generate discrete data
                 event[i][j] = int(generateBaselineData(disZScore[j - 1], statMean[i], statSD[i], eventMin[i], eventMax[i]))
@@ -38,12 +37,16 @@ def generateZScore(CD, days):
     return zScore
 
 def logEvents(events, days):
-    header = [["Event Name"] + [f"Days {i}" for i in range(1 , days + 1)]]
-    for i in range(len(events)):
-        header.append(events[i])
     print("\n")
-    print("Writing to csv")
-    with open('events.csv', 'w') as file:
-        for i in range(len(header)):
-            file.write(str(header[i]) + "\n")
-        file.close()
+    print("Writing to file")
+    with open("activities.txt", 'w') as file:
+        #List 1 is the header where index 0 is "Event Name" and the rest are the days, for subsequent lists, the first element is the event name, the rest are the values
+        for i in range(days):
+            file.write(f"Event Name, Day {i + 1}\n")
+            file.write(f"{events[0][0]}, {events[0][i + 1]}\n")
+            file.write(f"{events[1][0]}, {events[1][i + 1]}\n")
+            file.write(f"{events[2][0]}, {events[2][i + 1]}\n")
+            file.write(f"{events[3][0]}, {events[3][i + 1]}\n")
+            file.write(f"{events[4][0]}, {events[4][i + 1]}\n\n\n")
+    print("Done writing to file")
+    print("\n")

@@ -1,0 +1,80 @@
+Event Name, Day 1
+Logins, 4
+Time Online, 140.65
+Emails Sent, 19
+Emails Opened, 12
+Emails Deleted, 7
+
+
+Event Name, Day 2
+Logins, 4
+Time Online, 121.96
+Emails Sent, 19
+Emails Opened, 13
+Emails Deleted, 7
+
+
+Event Name, Day 3
+Logins, 5
+Time Online, 149.69
+Emails Sent, 22
+Emails Opened, 16
+Emails Deleted, 9
+
+
+Event Name, Day 4
+Logins, 2
+Time Online, 147.76
+Emails Sent, 15
+Emails Opened, 7
+Emails Deleted, 4
+
+
+Event Name, Day 5
+Logins, 4
+Time Online, 170.54
+Emails Sent, 20
+Emails Opened, 14
+Emails Deleted, 8
+
+
+Event Name, Day 6
+Logins, 2
+Time Online, 110.46
+Emails Sent, 15
+Emails Opened, 6
+Emails Deleted, 4
+
+
+Event Name, Day 7
+Logins, 7
+Time Online, 185.19
+Emails Sent, 25
+Emails Opened, 21
+Emails Deleted, 11
+
+
+Event Name, Day 8
+Logins, 4
+Time Online, 162.44
+Emails Sent, 19
+Emails Opened, 12
+Emails Deleted, 7
+
+
+Event Name, Day 9
+Logins, 2
+Time Online, 188.67
+Emails Sent, 16
+Emails Opened, 8
+Emails Deleted, 5
+
+
+Event Name, Day 10
+Logins, 2
+Time Online, 127.63
+Emails Sent, 15
+Emails Opened, 6
+Emails Deleted, 4
+
+

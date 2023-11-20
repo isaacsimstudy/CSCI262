@@ -8,9 +8,7 @@ def main():
 
     #Reading Files
     eventName, eventType, eventMin, eventMax, eventWeight, statName, statMean, statSD = readFiles(event_file, stats_file)
-    #totalWeight = sum(eventWeight)
-    #Generating and logging events
-    print("\n")
+
     print("Generating and logging events")
     events = generateEvents(eventName, eventType, eventMin, eventMax, statMean, statSD, days)
 

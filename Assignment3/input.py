@@ -1,23 +1,39 @@
 import os
+import sys
 def takeInput():
+    if len(sys.argv) == 4:
+        eventFileName = sys.argv[1]
+        statFileName = sys.argv[2]
+        days = sys.argv[3]
     #Take input for event file, stat file and number of days, if event file or stat file does not exist, ask again
     event = True
     stat = True
     while event:
-        eventFileName = input("Enter event file name: ")
         if os.path.exists(eventFileName):
             event = False
         else:
             print("Error: Event file does not exist")
+            eventFileName = input("Re-Enter event file name: ")
 
     while stat:
-        statFileName = input("Enter stats file name: ")
         if os.path.exists(statFileName):
             stat = False
         else:
             print("Error: Stats file does not exist")
+            statFileName = input("Re-Enter stats file name: ")
 
-    days = int(input("Enter number of days: "))
+    while True:
+        #Check if days is not a number or 0
+        try:
+            days = int(days)
+            if days <= 0:
+                print("Error: Days cannot be 0 or negative")
+                days = input("Re-Enter number of days: ")
+            else:
+                break
+        except ValueError:
+            print("Error: Days is not a number")
+            days = input("Re-Enter number of days: ")
 
     return eventFileName, statFileName, days
 
@@ -99,3 +115,4 @@ def checkEventNames(events, stats):
         if eventName != statName:
             print("Error: Event names in event file and stats file are not same")
             exit()
+    print("Ch")
