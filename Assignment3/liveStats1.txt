@@ -1,6 +1,0 @@
-Event Name, Mean, SD
-Logins, 7, 3
-Time Online, 120.7, 33
-Emails Sent, 15, 4
-Emails Opened, 11, 5
-Emails Deleted, 5, 2
