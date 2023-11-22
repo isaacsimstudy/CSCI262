@@ -1,8 +1,15 @@
 import numpy as np
 def getMeanSD(events, mean, sd):
     for i in range(len(events)):
-        mean.append(np.mean(events[i][1:]))
-        sd.append(np.std(events[i][1:]))
+        if i == 1:
+            #Round to 2 decimal places
+            print(f"Hit {events[i][0]}")
+            mean.append(np.round(np.mean(events[i][1:]), 2))
+            sd.append(np.round(np.std(events[i][1:]), 2))
+        else:
+            #Round to integer
+            mean.append(np.round(np.mean(events[i][1:]), 0))
+            sd.append(np.round(np.std(events[i][1:]), 0))
     return mean, sd
 
 def getZScoreDayEvent(events, days, mean, sd):

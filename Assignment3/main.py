@@ -1,4 +1,4 @@
-from analysisEngine import analyseData, logNewData, getZScoreDayEvent
+from analysisEngine import analyseData, logNewData, getZScoreDayEvent, getMeanSD
 from alertEngine import flagAlerts, getthreshHold
 from input import takeInput, readEventFile, checkEventNames, checkNumEvents, readStatsFiles
 from activitySimulationEngine import generateEvents, logEvents
@@ -21,12 +21,13 @@ def main():
     events = generateEvents(eventName, eventType, eventMin, eventMax, statMean, statSD, days)
 
     #Logging events
-    logEvents(events, days, hasTakenInput - 1)
+    logEvents(events, days, hasTakenInput)
 
     #Analyse data
     threshHoldMean, threshHoldSD, meanZSCORE = analyseData(events, days)
 
-    logNewData(eventName, threshHoldMean, threshHoldSD, hasTakenInput - 1)
+    logNewData(eventName, threshHoldMean, threshHoldSD, hasTakenInput)
+    hasTakenInput += 1
 
     sumWeight = getthreshHold(meanZSCORE, eventWeight)
 
@@ -42,6 +43,11 @@ def main():
         newEvents = generateEvents(eventName, eventType, eventMin, eventMax, newStatMean, newStatSD, days)
 
         logEvents(newEvents, days, hasTakenInput)
+
+        liveMean, liveSD = getMeanSD(newEvents, [], [])
+
+        logNewData(eventName, liveMean, liveSD, hasTakenInput)
+        hasTakenInput += 1
 
         dayZScore = getZScoreDayEvent(newEvents, days, threshHoldMean, threshHoldSD)
 

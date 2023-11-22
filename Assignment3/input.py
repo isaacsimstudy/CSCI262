@@ -31,7 +31,6 @@ def takeInput(hasTakenInput):
         except ValueError:
             print("Error: Days must be a number")
             days = input("Re-Enter number of days: ")
-    hasTakenInput += 1
     return eventFileName, statFileName, days, hasTakenInput
 
 def findFile(eventFileName, statFileName):
