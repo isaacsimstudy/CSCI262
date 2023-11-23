@@ -6,7 +6,7 @@ def flagAlerts(dayZScore, thresHold, eventName, days):
         for j in range(len(eventName)):
             sumofDay = sumofDay + dayZScore[j][i]
         if sumofDay > thresHold:
-            print(f"Day {i + 1} is flagged")
+            print(f"Day {i + 1} is flagged: {sumofDay} > {thresHold}")
             counter += 1
         sumofDay = 0
     print(f"Total number of days flagged: {counter}")

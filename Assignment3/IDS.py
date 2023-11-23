@@ -21,7 +21,7 @@ def main():
     events = generateEvents(eventName, eventType, eventMin, eventMax, statMean, statSD, days)
 
     #Logging events
-    logEvents(events, days, hasTakenInput)
+    logEvents(events, eventType, days, hasTakenInput)
 
     #Analyse data
     threshHoldMean, threshHoldSD, meanZSCORE = analyseData(events, days)
@@ -42,7 +42,7 @@ def main():
 
         newEvents = generateEvents(eventName, eventType, eventMin, eventMax, newStatMean, newStatSD, days)
 
-        logEvents(newEvents, days, hasTakenInput)
+        logEvents(newEvents, eventType, days, hasTakenInput)
 
         liveMean, liveSD = getMeanSD(newEvents, [], [])
 

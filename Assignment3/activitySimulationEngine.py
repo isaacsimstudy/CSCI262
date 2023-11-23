@@ -36,7 +36,7 @@ def generateZScore(CD, days):
         zScore.append((day[i] - mean) / sd)
     return zScore
 
-def logEvents(events, days, hasTakenInput):
+def logEvents(events, eventType, days, hasTakenInput):
     print("\nWriting to file")
     if hasTakenInput == 0:
         fileName = "thresholdData.txt"
@@ -47,9 +47,9 @@ def logEvents(events, days, hasTakenInput):
         # the first element is the event name, the rest are the values
         for i in range(days):
             file.write(f"Event Name, Day {i + 1}\n")
-            file.write(f"{events[0][0]}, {events[0][i + 1]}\n")
-            file.write(f"{events[1][0]}, {events[1][i + 1]}\n")
-            file.write(f"{events[2][0]}, {events[2][i + 1]}\n")
-            file.write(f"{events[3][0]}, {events[3][i + 1]}\n")
-            file.write(f"{events[4][0]}, {events[4][i + 1]}\n\n\n")
+            file.write(f"{events[0][0]}:{eventType[0]}:{events[0][i + 1]}\n")
+            file.write(f"{events[1][0]}:{eventType[1]}:{events[1][i + 1]}\n")
+            file.write(f"{events[2][0]}:{eventType[2]}:{events[2][i + 1]}\n")
+            file.write(f"{events[3][0]}:{eventType[3]}:{events[3][i + 1]}\n")
+            file.write(f"{events[4][0]}:{eventType[4]}:{events[4][i + 1]}\n\n\n")
     print("Done writing to file")
